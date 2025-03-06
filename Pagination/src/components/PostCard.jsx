@@ -1,15 +1,22 @@
-const PostCard = ({id, title, body, likes, dislikes, views}) => {
+const PostCard = ({title, body, likes, dislikes, views }) => {
     return (
-        <><div key={id}>
-            <span>{id}</span>
-            <h4>{title}</h4>
-            <p>{body}</p>
-            <span>{likes}</span>
-            <span>{dislikes}</span>
-        </div><div>
-                <h6>{views}</h6>
-            </div></>
-    )
-}
-
-export default PostCard
+      <article className="post-card">
+        <header>
+          <h4>{title}</h4>
+        </header>
+        <section>
+          <p>{body}</p>
+        </section>
+        <footer>
+          <div className="post-stats">
+            <span>👍 {likes}</span>
+            <span>👎 {dislikes}</span>
+            <span>👁️ {views}</span>
+          </div>
+        </footer>
+      </article>
+    );
+  };
+  
+  export default PostCard;
+  
