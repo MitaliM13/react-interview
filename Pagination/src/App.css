@@ -19,7 +19,7 @@ body {
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-top: 20px;
 }
@@ -68,12 +68,12 @@ body {
   flex-direction: row;
   gap: 5px;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   padding: 3px;
 }
 
 .btn {
-  background-color: #b892nb;
+  background-color: #dad0d0;
   border: none;
   padding: 8px;
   border-radius: 50px;
@@ -81,4 +81,20 @@ body {
 
 .active {
   background-color: blue;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  border: none;
+  transform: scale(1.1);
+}
+
+
+.liked {
+  background-color: #4caf50;
+  color: white;
+}
+
+.disliked {
+  background-color: #f44336;
+  color: white;
 }
