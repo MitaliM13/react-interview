@@ -98,3 +98,43 @@ body {
   background-color: #f44336;
   color: white;
 }
+
+.search-box {
+  display: block;
+  justify-self: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 5px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  max-width: fit-content;
+}
+
+.search {
+  padding: 6px 10px;
+  margin: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.search:focus {
+  border-color: #007bff;
+}
+
+.search-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.search-btn:hover {
+  background: #0056b3;
+}

@@ -12,7 +12,7 @@ const PostCard = ({ title, body, likes, dislikes, views }) => {
       setUserInteraction(null);
     } else {
       setLikeCount((prev) =>
-        userInteraction === "dislike" ? prev + 2 : prev + 1
+        userInteraction === "dislike" ? prev + 1 : prev + 1
       );
       setDislikeCount((prev) =>
         userInteraction === "dislike" ? prev - 1 : prev
@@ -27,7 +27,7 @@ const PostCard = ({ title, body, likes, dislikes, views }) => {
       setUserInteraction(null);
     } else {
       setDislikeCount((prev) =>
-        userInteraction === "like" ? prev + 2 : prev + 1
+        userInteraction === "like" ? prev + 1 : prev + 1
       );
       setLikeCount((prev) => (userInteraction === "like" ? prev - 1 : prev));
       setUserInteraction("dislike");
