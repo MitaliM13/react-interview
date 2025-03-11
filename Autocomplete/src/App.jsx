@@ -7,13 +7,9 @@ function App() {
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
   const [cache, setCache] = useState({});
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const getData = async () => {
-    if (!query.trim()) {
-      setData([]);
-      return;
-    }
-
     if (cache[query]) {
       console.log("CACHE RETURNED", query);
       setData(cache[query]);
@@ -25,14 +21,22 @@ function App() {
       `https://dummyjson.com/recipes/search?q=${query}`
     );
     const json = await response.json();
-    setData(json?.recipes || []);
-    setCache((prev) => ({ ...prev, [query]: json?.recipes || [] }));
+    setData(json?.recipes);
+    setCache((prev) => ({ ...prev, [query]: json?.recipes }));
   };
 
   useEffect(() => {
     const timer = setTimeout(getData, 400);
     return () => clearTimeout(timer);
   }, [query]);
+
+  const openModal = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const closeModal = () => {
+    setSelectedRecipe(null);
+  };
 
   return (
     <div className="app-container">
@@ -65,14 +69,19 @@ function App() {
               <h3>{r.name}</h3>
               <div className="recipe-details">
                 <p>
-                  🍽 Servings: <strong>{r.servings}</strong>
+                  Servings: <strong>{r.servings}</strong>
                 </p>
                 <p>
-                  🎖 Difficulty: <strong>{r.difficulty}</strong>
+                  Difficulty: <strong>{r.difficulty}</strong>
                 </p>
                 <p>
-                  🥗 Cuisine: <strong>{r.cuisine}</strong>
+                  Cuisine: <strong>{r.cuisine}</strong>
                 </p>
+              </div>
+              <div>
+                <button className="btn" onClick={() => openModal(r)}>
+                  Read More
+                </button>
               </div>
             </div>
           ))
@@ -80,6 +89,42 @@ function App() {
           <p className="no-results">No recipes found. Try searching!</p>
         )}
       </div>
+
+      {selectedRecipe && (
+        <div onClick={closeModal} className="modal-overlay">
+          <div onClick={(e) => e.stopPropagation()} className="modal-content">
+            <span onClick={closeModal} className="close-btn">
+              x
+            </span>
+            <h2>{selectedRecipe.name}</h2>
+            <img src={selectedRecipe.image} alt={selectedRecipe.name} />
+            <div className="recipe-details">
+              <p>
+                <strong>Servings:</strong> {selectedRecipe.servings}
+              </p>
+              <p>
+                <strong>Difficulty:</strong> {selectedRecipe.difficulty}
+              </p>
+              <p>
+                <strong>Cuisine:</strong> {selectedRecipe.cuisine}
+              </p>
+            </div>
+            <h3 className="ingredients">Ingredients:</h3>
+            <ul className="ing-list">
+              {selectedRecipe.ingredients.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <h3>Instructions:</h3>
+            <ul className="instructions-list">
+              {selectedRecipe.instructions.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
