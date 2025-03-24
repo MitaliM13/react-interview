@@ -45,7 +45,7 @@
 console.log('Start');
 
 function getUserFromDB(name, Callback){
-    setTimeout(() => {
+    setTimeout(() => { 
         console.log(`Getting username...`);
         Callback(name)
     }, 2000)
