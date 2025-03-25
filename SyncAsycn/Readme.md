@@ -21,3 +21,5 @@ A promise is an object representing the eventual completion or failure of an asy
 1. Pending - Initial / Not yet fullfilled or rejected
 2. Fullfilled/Resolved - Promise Completed
 3. Rejected - Promise Failed
+
+- Fetch API promise olny rejects when we have some network error(Not in other cases)
